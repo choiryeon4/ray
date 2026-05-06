@@ -1,14 +1,56 @@
-noBtn.addEventListener("mouseover", () => {
-    const newX = Math.floor(Math.random() * questionContainer.offsetWidth);
-    const newY = Math.floor(Math.random() * questionContainer.offsetHeight); // Changed from offsetWidth to offsetHeight
-    noBtn.style.left = `${newX}px`;
-    noBtn.style.top = `${newY}px`;
-});
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>إهداء خاص</title>
+    <style>
+        body { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; background-color: #fce4ec; margin: 0; font-family: sans-serif; overflow: hidden; }
+        #questionContainer { text-align: center; position: relative; width: 100%; height: 200px; }
+        .heart { position: relative; width: 100px; height: 90px; animation: beat 0.8s infinite; margin: 20px auto; }
+        .heart:before, .heart:after { content: ""; position: absolute; left: 50px; top: 0; width: 50px; height: 80px; background: #e91e63; border-radius: 50px 50px 0 0; transform: rotate(-45deg); transform-origin: 0 100%; }
+        .heart:after { left: 0; transform: rotate(45deg); transform-origin: 100% 100%; }
+        @keyframes beat { 0% { transform: scale(1); } 30% { transform: scale(1.2); } 100% { transform: scale(1); } }
+        .buttons { margin-top: 20px; position: relative; width: 100%; height: 100px; }
+        button { padding: 10px 25px; font-size: 18px; cursor: pointer; border-radius: 20px; border: none; transition: 0.3s; position: absolute; }
+        #yesBtn { background-color: #4caf50; color: white; left: 40%; }
+        #noBtn { background-color: #f44336; color: white; left: 55%; }
+    </style>
+</head>
+<body>
 
-yesBtn.addEventListener("click", () => {
-    const timeoutId = setTimeout(() => {
-        heartLoader.style.display = "none";
-        resultContainer.style.display = "inherit";
-        gifResult.play();
-    }, 3000);
-});
+    <div id="heartLoader" class="heart"></div>
+    <div id="questionContainer">
+        <h1 id="mainTitle">أغلى ما عندي.. هل تقبلين اعتذاري؟</h1>
+        <div class="buttons">
+            <button id="yesBtn">نعم</button>
+            <button id="noBtn">لا</button>
+        </div>
+    </div>
+    <div id="resultContainer" style="display:none; text-align:center;">
+        <h1>أحبكِ جداً! ❤️</h1>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById("noBtn");
+        const yesBtn = document.getElementById("yesBtn");
+        const heartLoader = document.getElementById("heartLoader");
+        const resultContainer = document.getElementById("resultContainer");
+        const questionContainer = document.getElementById("questionContainer");
+
+        // كود هروب زر "لا"
+        noBtn.addEventListener("mouseover", () => {
+            const newX = Math.floor(Math.random() * (window.innerWidth - 100));
+            const newY = Math.floor(Math.random() * (window.innerHeight - 50));
+            noBtn.style.left = newX + "px";
+            noBtn.style.top = newY + "px";
+        });
+
+        // كود الضغط على "نعم"
+        yesBtn.addEventListener("click", () => {
+            questionContainer.style.display = "none";
+            resultContainer.style.display = "block";
+            heartLoader.style.animation = "beat 0.3s infinite"; // تسريع نبض القلب
+        });
+    </script>
+</body>
+</html>
