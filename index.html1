@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>إهداء خاص</title>
+    <style>
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f0f0f0; margin: 0; font-family: sans-serif; overflow: hidden; flex-direction: column; }
+        .heart { position: relative; width: 100px; height: 90px; animation: beat 0.8s infinite; }
+        .heart:before, .heart:after { content: ""; position: absolute; left: 50px; top: 0; width: 50px; height: 80px; background: red; border-radius: 50px 50px 0 0; transform: rotate(-45deg); transform-origin: 0 100%; }
+        .heart:after { left: 0; transform: rotate(45deg); transform-origin: 100% 100%; }
+        @keyframes beat { 0% { transform: scale(1); } 30% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        h1 { margin-top: 50px; color: #333; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="heart"></div>
+    <h1>أحبك يا أغلى ما عندي</h1>
+</body>
+</html>
